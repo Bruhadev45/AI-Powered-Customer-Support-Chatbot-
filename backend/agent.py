@@ -3,13 +3,11 @@ from langchain.agents import initialize_agent, Tool, AgentType
 from retrieval import retrieve_docs
 from transformers import pipeline
 
-# Local lightweight LLM (swap for larger if you have >8GB RAM)
-model_id = "google/flan-t5-base"
+model_id = "facebook/blenderbot-400M-distill"
 llm_pipeline = pipeline("text2text-generation", model=model_id, max_new_tokens=256)
 llm = HuggingFacePipeline(pipeline=llm_pipeline)
 
 def fetch_product_api(query: str) -> str:
-    # Dummy implementation for demo
     return f"Here are some recommended products based on '{query}'. (Demo response)"
 
 tools = [
@@ -29,8 +27,12 @@ agent = initialize_agent(
     tools=tools,
     llm=llm,
     agent=AgentType.ZERO_SHOT_REACT_DESCRIPTION,
-    verbose=True
+    verbose=True,
+    handle_parsing_errors=True,
+    max_iterations=10,
+    max_execution_time=60
 )
 
 def run_agent(query: str) -> str:
-    return agent.run(query)
+    # Bypass agent/tools, direct LLM call for speed testing
+    return llm(query)
