@@ -1,0 +1,54 @@
+# =======================
+# Python - Backend Ignore
+# =======================
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*.so
+
+# Virtual environment
+backend/.venv/
+backend/venv/
+backend/env/
+
+# Environment variables
+backend/.env
+
+# Uploads or temp
+backend/uploads/
+
+# Logs
+*.log
+
+# ==========================
+# Node.js - Frontend Ignore
+# ==========================
+
+# Dependencies
+frontend/node_modules/
+
+# Build output
+frontend/dist/
+frontend/build/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Tailwind cache
+frontend/.tailwind-cache/
+
+# Dependency manager files
+frontend/.pnp/
+frontend/.pnp.js
+
+# =======================
+# Common IDE/Editor Files
+# =======================
+
+.vscode/
+*.swp
+.DS_Store
+Thumbs.db
